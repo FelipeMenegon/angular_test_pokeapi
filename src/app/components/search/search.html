@@ -1,0 +1,19 @@
+<div class="pokemon-search">
+
+<input
+  class="pokemon-search__input"
+  type="text"
+  placeholder="Procure um Pokemon!"
+  [(ngModel)]="pokemonName"
+  (keyup.enter)="onSearch()"
+/>
+
+<button
+  class="pokemon-search_icon"
+  type="button"
+  (click)="onSearch()"
+>
+  ⌕
+</button>
+
+</div>

@@ -1,24 +1,22 @@
-<div class="pokemon-card" [ngClass]="primaryType">
+<div class="pokemon-card" [ngClass]="primaryType()">
 
     <div class="pokemon-image">
-        <img [src]="pokeImage" [alt]="pokeName" />
+        <img [src]="pokeImage()" [alt]="pokeName" />
     </div>
 
     <div class="pokemon-info">
 
         <span class="pokemon-number">
-            #33
+            #{{pokeid()}}
         </span>
 
         <h2> {{pokeName}} </h2>
 
         <div class="pokemon-types">
-            <span class="type" [ngClass]="primaryType">
-                {{ primaryType }}
+            <span class="type" [ngClass]="primaryType()">
+                {{ primaryType() }}
             </span>
         </div>
-
-        <button (click)="getPokemon()">GERAR POKEMON</button>
 
     </div>
 

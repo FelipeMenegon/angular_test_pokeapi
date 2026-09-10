@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.pokemon-search {
+  font-family: 'Fredoka', sans-serif;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  max-width: 620px;
+  height: 64px;
+
+  margin: 0 auto;
+  padding: 0 1.25rem;
+
+  box-sizing: border-box;
+
+  background-color: #fff;
+
+  border: 4px solid #222;
+  border-radius: 18px;
+
+  box-shadow: 0 5px 0 #222;
+
+  transition: transform 0.15s ease;
+
+  &:focus-within {
+    transform: translateY(-2px);
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+
+    color: #222;
+    background: transparent;
+
+    border: none;
+    outline: none;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+
+  &_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    color: #fff;
+    background-color: #d62839;
+
+    border: 3px solid #222;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-family: 'Fredoka', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

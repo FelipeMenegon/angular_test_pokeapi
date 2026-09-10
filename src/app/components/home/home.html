@@ -1,7 +1,12 @@
 <div class="modal-align">
     <div class="modal">
-        <div class="card">
-            <app-card ></app-card>
+        <div class="pokeball-center"></div>
+
+        <div class="align">
+            <app-search (pokemonSearched)="onPokemonSearched($event)"/>
+            @if(pokemonName){
+                <app-card [pokeName]="pokemonName"/>
+            }
         </div>
     </div>
 </div>
