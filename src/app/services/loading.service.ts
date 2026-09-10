@@ -1,7 +1,7 @@
 import { Service, signal } from '@angular/core';
 
 @Service()
-export class Loading {
+export class LoadingService {
     isLoading = signal<boolean>(false);
 
     show(){

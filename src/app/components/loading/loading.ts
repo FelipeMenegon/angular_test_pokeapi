@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { LoadingService } from '../../services/loading.service';
+import { Component, inject } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './loading.scss',
   templateUrl: './loading.html',
 })
-export class Loading {}
+export class Loading {
+  loadingService = inject(LoadingService);
+
+}

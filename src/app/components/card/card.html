@@ -1,28 +1,48 @@
-<div class="pokemon-card" [ngClass]="primaryType()">
+@if (!loadingService.isLoading() && pokeName && showPokemonCard()) {
+  <div class="pokemon-overlay" (click)="closePokemonCard()">
 
-    <div class="pokemon-image">
-        <img [src]="pokeImage()" [alt]="pokeName" />
-    </div>
+    <div class="pokemon-card-3d">
 
-    <div class="pokemon-info">
+      <div class="pokemon-card" [ngClass]="primaryType()">
 
-        <span class="pokemon-number">
-            #{{pokeid()}}
-        </span>
-
-        <h2> {{pokeName}} </h2>
-
-        <div class="pokemon-types">
-            <span class="type" [ngClass]="primaryType()">
-                {{ primaryType() }}
-            </span>
-            @if (secondaryType()) {
-                <span class="type" [ngClass]="secondaryType()">
-                    {{ secondaryType() }}
-                </span>
-            }
+        <div class="pokemon-image">
+          <img
+            [src]="pokeImage()"
+            [alt]="pokeName"
+          />
         </div>
 
+        <div class="pokemon-info">
+
+          <span class="pokemon-number">
+            #{{ pokeid() }}
+          </span>
+
+          <h2>{{ pokeName }}</h2>
+
+          <div class="pokemon-types">
+
+            <span
+              class="type"
+              [ngClass]="primaryType()">
+              {{ primaryType() }}
+            </span>
+
+            @if (secondaryType()) {
+              <span
+                class="type"
+                [ngClass]="secondaryType()">
+                {{ secondaryType() }}
+              </span>
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
-</div>
+  </div>
+}

@@ -1,6 +1,15 @@
-import { Component, Input, OnChanges, SimpleChanges, signal, computed } from '@angular/core';
-import { PokemonService } from '../../services/pokemon';
+import {
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  signal,
+  computed,
+  inject,
+} from '@angular/core';
+import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-card',
@@ -9,12 +18,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './card.html',
 })
 export class Card implements OnChanges {
-
   @Input() pokeName: string = '';
 
   pokemon = signal<any>(null);
   pokeImage = signal<string>('');
   pokeid = signal<any>(null);
+  showPokemonCard = signal<boolean>(true);
+  loadingService = inject(LoadingService);
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -30,13 +40,21 @@ export class Card implements OnChanges {
         this.pokemon.set(pokemon);
         this.pokeImage.set(pokemon.sprites.other.home.front_default);
         this.pokeid.set(pokemon.id);
+        this.showPokemonCard.set(true);
 
         console.log('Pokemon:', pokemon);
       },
       error: (error) => {
         console.error('Pokémon não encontrado:', error);
-      }
+      },
     });
+  }
+
+  closePokemonCard() {
+    this.showPokemonCard.set(false);
+    this.pokemon.set(null);
+    this.pokeImage.set('');
+    this.pokeid.set(null);
   }
 
   primaryType = computed(() => this.pokemon()?.types?.[0]?.type?.name ?? false);

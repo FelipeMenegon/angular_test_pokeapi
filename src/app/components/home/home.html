@@ -3,9 +3,13 @@
         <div class="pokeball-center"></div>
 
         <div class="align">
-            <app-search (pokemonSearched)="onPokemonSearched($event)"/>
+            @if (loadingService.isLoading() === false) {
+
+            <app-search (pokemonSearched)="onPokemonSearched($event)" />
+            }
             @if(pokemonName){
-                <app-card [pokeName]="pokemonName"/>
+            <app-loading />
+            <app-card [pokeName]="pokemonName" />
             }
         </div>
     </div>

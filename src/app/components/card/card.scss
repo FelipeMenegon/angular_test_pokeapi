@@ -471,3 +471,98 @@ h2 {
   --type-color: #89885f;
   --type-light: #d8d8bd;
 }
+
+/* =========================
+   OVERLAY
+========================= */
+
+.pokemon-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  perspective: 1200px;
+
+  animation: overlay-in 0.3s ease-out;
+}
+
+/* Container responsável pelo 3D */
+.pokemon-card-3d {
+  transform-style: preserve-3d;
+
+  animation: card-3d-in 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================
+   ANIMAÇÃO DO OVERLAY
+========================= */
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   CARTA SUBINDO + GIRANDO 3D
+========================= */
+
+@keyframes card-3d-in {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(100vh)
+      rotateX(80deg)
+      rotateY(-180deg)
+      scale(0.6);
+  }
+
+  30% {
+    opacity: 1;
+
+    transform:
+      translateY(30vh)
+      rotateX(45deg)
+      rotateY(-120deg)
+      scale(0.8);
+  }
+
+  60% {
+    transform:
+      translateY(-30px)
+      rotateX(-10deg)
+      rotateY(25deg)
+      scale(1.05);
+  }
+
+  80% {
+    transform:
+      translateY(10px)
+      rotateX(5deg)
+      rotateY(-8deg)
+      scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      rotateX(0)
+      rotateY(0)
+      scale(1);
+  }
+}
+
