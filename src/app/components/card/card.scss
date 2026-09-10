@@ -7,85 +7,347 @@
   --type-light: #f5f5dc;
 
   width: 280px;
+  position: relative;
 
-  background-color: white;
-  border-radius: 20px;
+  background:
+    linear-gradient(
+      135deg,
+      #fff 0%,
+      #f8f8f8 45%,
+      #fff 70%,
+      #e9e9e9 100%
+    );
+
+  border-radius: 16px;
   overflow: hidden;
 
-  border: 3px solid var(--type-color);
+  /* Moldura de carta */
+  border: 8px solid #d6b45a;
 
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 0 #8b6f2f,
+    0 8px 15px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 2px #fff3a6;
 
-  transition: 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  /* Leve efeito holográfico */
+  background-image:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.8),
+      rgba(255,220,120,0.15),
+      rgba(120,220,255,0.15),
+      rgba(255,255,255,0.8)
+    );
+}
+
+/* Brilho da carta */
+
+.pokemon-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: 5;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.45) 45%,
+    transparent 60%
+  );
+
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.pokemon-card:hover::before {
+  transform: translateX(100%);
 }
 
 .pokemon-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) rotate(-1deg);
 
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    0 6px 0 #8b6f2f,
+    0 18px 30px rgba(0, 0, 0, 0.3),
+    0 0 25px color-mix(
+      in srgb,
+      var(--type-color) 45%,
+      transparent
+    );
 }
 
-/* IMAGEM */
+/* =========================
+   IMAGEM
+========================= */
 
 .pokemon-image {
-  height: 220px;
+  height: 210px;
+
+  position: relative;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: var(--type-light);
+  background:
+    radial-gradient(
+      circle at center,
+      #ffffff 0%,
+      var(--type-light) 45%,
+      var(--type-color) 140%
+    );
+
+  border: 3px solid #333;
+
+  margin: 5px;
+
+  overflow: hidden;
+}
+
+/* Padrão decorativo */
+
+.pokemon-image::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.2;
+
+  background-image:
+    radial-gradient(
+      circle,
+      white 2px,
+      transparent 3px
+    );
+
+  background-size: 18px 18px;
+}
+
+.pokemon-image::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background: var(--type-color);
+
+  opacity: 0.12;
+
+  filter: blur(25px);
 }
 
 .pokemon-image img {
+  position: relative;
+  z-index: 2;
+
   width: 180px;
+
   image-rendering: pixelated;
+
+  filter:
+    drop-shadow(0 8px 5px rgba(0,0,0,0.3));
+
+  transition: transform 0.3s ease;
 }
 
-/* INFO */
+.pokemon-card:hover .pokemon-image img {
+  transform: scale(1.08);
+}
+
+/* =========================
+   INFO
+========================= */
 
 .pokemon-info {
-  padding: 20px;
+  padding: 14px 16px 16px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.95),
+      rgba(245,245,245,0.95)
+    );
+
+  border-top: 3px solid #333;
 }
+
+/* Número da Pokédex */
 
 .pokemon-number {
-  color: #999;
-  font-size: 14px;
+  display: inline-block;
+
+  color: #555;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
 }
+
+/* Nome */
 
 h2 {
-  margin: 5px 0 15px;
+  margin: 3px 0 10px;
 
-  font-size: 28px;
-  color: var(--type-color);
+  font-size: 27px;
+  font-weight: 900;
+
+  color: #222;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+
+  text-shadow:
+    1px 1px 0 #fff,
+    2px 2px 0 rgba(0,0,0,0.08);
 }
 
-/* TYPES */
+/* =========================
+   TYPES
+========================= */
 
 .pokemon-types {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
+
+  display: flex;
+  gap: 6px;
 }
 
 .type {
-  display: inline-block;
+  --badge-color: #89885f;
 
-  padding: 6px 12px;
-  margin-right: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  border-radius: 20px;
+  min-width: 65px;
+  padding: 5px 11px;
+
+  border-radius: 5px;
 
   color: white;
-  background-color: var(--type-color);
 
-  font-size: 13px;
-  font-weight: bold;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--badge-color) 80%, white),
+    var(--badge-color)
+  );
+
+  border: 2px solid rgba(0, 0, 0, 0.25);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.5),
+    0 2px 3px rgba(0,0,0,0.2);
+
+  font-size: 11px;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  text-shadow:
+    1px 1px 1px rgba(0,0,0,0.4);
 }
 
-/* STATS */
+.type.electric {
+  --badge-color: #eabf00;
+}
+
+.type.fire {
+  --badge-color: #ee3d22;
+}
+
+.type.water {
+  --badge-color: #3578e5;
+}
+
+.type.grass {
+  --badge-color: #4caf50;
+}
+
+.type.ice {
+  --badge-color: #4fc3d8;
+}
+
+.type.poison {
+  --badge-color: #a33ea1;
+}
+
+.type.flying {
+  --badge-color: #7663c1;
+}
+
+.type.psychic {
+  --badge-color: #d9366f;
+}
+
+.type.bug {
+  --badge-color: #8fa514;
+}
+
+.type.rock {
+  --badge-color: #8f7f24;
+}
+
+.type.ghost {
+  --badge-color: #705898;
+}
+
+.type.dragon {
+  --badge-color: #6f35fc;
+}
+
+.type.dark {
+  --badge-color: #4a3428;
+}
+
+.type.steel {
+  --badge-color: #77778f;
+}
+
+.type.fairy {
+  --badge-color: #d96bb8;
+}
+
+.type.fighting {
+  --badge-color: #c22e28;
+}
+
+.type.ground {
+  --badge-color: #a07e2d;
+}
+
+.type.normal {
+  --badge-color: #89885f;
+}
+
+
+
+/* =========================
+   STATS
+========================= */
 
 .pokemon-stats {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  padding-top: 12px;
+
+  border-top: 2px solid #ccc;
 
   text-align: center;
 }
@@ -93,19 +355,28 @@ h2 {
 .pokemon-stats div {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+
+  align-items: center;
+
+  gap: 3px;
 }
 
 .pokemon-stats strong {
   font-size: 18px;
+  font-weight: 900;
+
   color: var(--type-color);
 }
 
 .pokemon-stats span {
-  color: #888;
-  font-size: 11px;
-}
+  color: #555;
 
+  font-size: 9px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
 
 /* =========================
    POKÉMON TYPES

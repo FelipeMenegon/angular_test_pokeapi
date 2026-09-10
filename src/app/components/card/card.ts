@@ -39,5 +39,6 @@ export class Card implements OnChanges {
     });
   }
 
-  primaryType = computed(() => this.pokemon()?.types?.[0]?.type?.name ?? 'normal');
+  primaryType = computed(() => this.pokemon()?.types?.[0]?.type?.name ?? false);
+  secondaryType = computed(() => this.pokemon()?.types?.[1]?.type?.name ?? false);
 }
