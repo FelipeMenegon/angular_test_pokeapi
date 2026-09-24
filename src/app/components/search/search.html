@@ -1,19 +1,62 @@
-<div class="pokemon-search">
+<div class="pokemon-search-wrapper">
 
-<input
-  class="pokemon-search__input"
-  type="text"
-  placeholder="Procure um Pokemon!"
-  [(ngModel)]="pokemonName"
-  (keyup.enter)="onSearch()"
-/>
+  <div class="pokemon-search">
 
-<button
-  class="pokemon-search_icon"
-  type="button"
-  (click)="onSearch()"
->
-  ⌕
-</button>
+    <input
+      class="pokemon-search__input"
+      type="text"
+      placeholder="Procure um Pokémon!"
+      [(ngModel)]="pokemonName"
+      (ngModelChange)="onPokemonNameChange()"
+      (keyup.enter)="onSearch()"
+    />
+
+    <button
+      class="pokemon-search__icon"
+      type="button"
+      aria-label="Pesquisar Pokémon"
+      (click)="onSearch()"
+    >
+      ⌕
+    </button>
+
+  </div>
+
+  @if (suggestions.length > 0) {
+
+    <div class="pokemon-search__suggestions">
+
+      <div class="pokemon-search__suggestions-title">
+        <span>Pokémon encontrados</span>
+        <span>{{ suggestions.length }}</span>
+      </div>
+
+      @for (pokemon of suggestions; track pokemon.name) {
+
+        <button
+          type="button"
+          class="pokemon-search__suggestion"
+          (click)="selectPokemon(pokemon.name)"
+        >
+
+          <span class="pokemon-search__pokeball">
+            <span></span>
+          </span>
+
+          <span class="pokemon-search__name">
+            {{ pokemon.name }}
+          </span>
+
+          <span class="pokemon-search__arrow">
+            →
+          </span>
+
+        </button>
+
+      }
+
+    </div>
+
+  }
 
 </div>
