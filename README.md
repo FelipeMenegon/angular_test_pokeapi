@@ -1,59 +1,95 @@
-# AngularTestPokeapi
+<h1 align="center"> PokéAPI </h1>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.7.
+Aplicação feita em **Angular 22** consumindo a [PokéAPI](https://pokeapi.co/). Projeto de estudo para praticar consumo de API, componentes, services, formulários e organização de uma aplicação Angular.
 
-## Development server
+## Sobre
 
-To start a local development server, run:
+A aplicação permite pesquisar Pokémon e visualizar suas informações através da PokéAPI.
 
-```bash
-ng serve
+A lista de Pokémon é carregada da API e fica disponível no frontend para alimentar o campo de pesquisa. Conforme o usuário digita, o autocomplete filtra os resultados sem precisar fazer uma nova requisição para cada letra.
+
+Também existe uma tela de carregamento para os momentos em que a aplicação está buscando dados da API.
+
+A ideia principal do projeto foi entender melhor como o Angular trabalha com dados vindos de uma API e como separar a responsabilidade entre componentes e services.
+
+## Preview
+
+<img width="1917" height="907" alt="image" src="https://github.com/user-attachments/assets/34f85461-28ba-4450-99c9-facb95ab6c6c" />
+<img width="1912" height="901" alt="image" src="https://github.com/user-attachments/assets/9be17fd2-d195-4fa8-85f6-069197264b95" />
+<img width="1917" height="904" alt="image" src="https://github.com/user-attachments/assets/7582cffd-dbda-4535-b8a7-1047632cc546" />
+
+
+## Funcionalidades
+
+| Funcionalidade | Descrição |
+| --- | --- |
+| Busca de Pokémon | Pesquisa um Pokémon pelo nome |
+| Autocomplete | Mostra sugestões enquanto o usuário digita |
+| Busca local | O autocomplete filtra a lista já carregada sem fazer uma requisição a cada tecla |
+| Seleção de sugestão | Clicar em um resultado preenche a busca e pesquisa o Pokémon |
+| Cards | Exibe as informações dos Pokémon em cards |
+| Nomes formatados | Nomes como `charizard-mega` são exibidos como `Charizard Mega` |
+| Loading | Mostra um estado de carregamento enquanto os dados estão sendo buscados |
+| Integração com API | Os dados são obtidos diretamente da PokéAPI |
+| Tratamento de estado | O autocomplete é atualizado conforme o conteúdo do campo muda |
+
+## Tecnologias
+
+- **Angular 22** — componentes standalone e estrutura da aplicação
+- **TypeScript** — tipagem e lógica dos componentes
+- **SCSS** — estilização dos componentes
+- **PokéAPI** — fonte dos dados dos Pokémon
+- **HttpClient** — comunicação com a API
+- **FormsModule** — controle do campo de pesquisa
+- **RxJS** — observables utilizados no consumo da API
+- **HTML** — estrutura dos componentes
+
+## Estrutura
+
+```text
+src/
+├── app/
+│   ├── components/
+│   │   ├── card/
+│   │   │   ├── card.html
+│   │   │   ├── card.scss
+│   │   │   └── card.ts
+│   │   │
+│   │   ├── home/
+│   │   │   ├── home.html
+│   │   │   ├── home.scss
+│   │   │   └── home.ts
+│   │   │
+│   │   ├── loading/
+│   │   │
+│   │   └── search/
+│   │       ├── search.html
+│   │       ├── search.scss
+│   │       └── search.ts
+│   │
+│   ├── interceptors/
+│   │   └── loading.interceptor.ts
+│   │
+│   ├── models/
+│   │   └── cards.ts
+│   │
+│   ├── services/
+│   │   ├── loading.service.ts
+│   │   └── pokemon.service.ts
+│   │
+│   ├── app.config.ts
+│   └── app.html
+│
+└── main.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Aviso
 
-## Code scaffolding
+Este é um projeto de estudo desenvolvido para praticar Angular,
+TypeScript, consumo de APIs e desenvolvimento de interfaces.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+O projeto não possui vínculo, patrocínio ou afiliação com Nintendo,
+The Pokémon Company ou qualquer empresa relacionada à franquia Pokémon.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Os nomes, personagens e imagens utilizados pertencem aos respectivos
+detentores de seus direitos.
