@@ -69,6 +69,10 @@ export class PokemonSearchComponent implements OnInit, OnDestroy {
       .slice(0, 8);
   }
 
+  formatPokemonName(name: string): string {
+    return name.replace(/-/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+
   selectPokemon(name: string): void {
     this.pokemonName = name;
 

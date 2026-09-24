@@ -50,6 +50,10 @@ export class Card implements OnChanges {
     });
   }
 
+  formatPokemonName(name: string): string {
+    return name.replace(/-/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+
   closePokemonCard() {
     this.showPokemonCard.set(false);
     this.pokemon.set(null);
