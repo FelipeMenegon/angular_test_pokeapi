@@ -20,6 +20,7 @@ import { LoadingService } from '../../services/loading.service';
 export class Card implements OnChanges {
   @Input() pokeName: string = '';
 
+  imageError = signal(false);
   pokemon = signal<any>(null);
   pokeImage = signal<string>('');
   pokeid = signal<any>(null);
@@ -50,6 +51,10 @@ export class Card implements OnChanges {
     });
   }
 
+  onImageError(): void {
+    this.imageError.set(true);
+  }
+
   formatPokemonName(name: string): string {
     return name.replace(/-/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
   }
@@ -59,6 +64,7 @@ export class Card implements OnChanges {
     this.pokemon.set(null);
     this.pokeImage.set('');
     this.pokeid.set(null);
+    this.imageError.set(false);
   }
 
   primaryType = computed(() => this.pokemon()?.types?.[0]?.type?.name ?? false);
